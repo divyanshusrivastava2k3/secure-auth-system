@@ -1,0 +1,118 @@
+{% extends "base.html" %}
+{% block title %}Dashboard — Secure Auth{% endblock %}
+
+{% block navbar %}
+<nav class="navbar">
+  <div class="navbar-brand">
+    <div class="icon">🔐</div>
+    Secure Auth
+  </div>
+  <div class="navbar-links">
+    <a href="/dashboard" class="active">Dashboard</a>
+    <a href="/sessions">Sessions</a>
+    <a href="/change-password">Password</a>
+  </div>
+  <div class="navbar-user">
+    <span>{{ user.full_name }}</span>
+    <div class="avatar">{{ user.full_name[0] | upper }}</div>
+    <button id="btn-logout" class="btn btn-sm btn-outline">Logout</button>
+  </div>
+</nav>
+{% endblock %}
+
+{% block content %}
+<div class="page-wrapper">
+  <div class="page-header">
+    <h1>👋 Welcome, {{ user.full_name.split(' ')[0] }}!</h1>
+    <p>Here's an overview of your account security</p>
+  </div>
+
+  <!-- Stats -->
+  <div class="stats-grid">
+    <div class="stat-card glass">
+      <div class="stat-icon purple">👥</div>
+      <div>
+        <div class="stat-value">{{ stats.total_users }}</div>
+        <div class="stat-label">Total Users</div>
+      </div>
+    </div>
+    <div class="stat-card glass">
+      <div class="stat-icon cyan">🔗</div>
+      <div>
+        <div class="stat-value">{{ stats.active_sessions }}</div>
+        <div class="stat-label">Active Sessions</div>
+      </div>
+    </div>
+    <div class="stat-card glass">
+      <div class="stat-icon green">✅</div>
+      <div>
+        <div class="stat-value">{{ stats.total_logins }}</div>
+        <div class="stat-label">Successful Logins</div>
+      </div>
+    </div>
+    <div class="stat-card glass">
+      <div class="stat-icon red">🚫</div>
+      <div>
+        <div class="stat-value">{{ stats.failed_attempts }}</div>
+        <div class="stat-label">Failed Attempts</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Profile Info -->
+  <div class="info-card glass">
+    <h2>🪪 Profile Information</h2>
+    <div class="info-grid">
+      <div class="info-row">
+        <span class="label">Full Name</span>
+        <span class="value">{{ user.full_name }}</span>
+      </div>
+      <div class="info-row">
+        <span class="label">Username</span>
+        <span class="value">@{{ user.username }}</span>
+      </div>
+      <div class="info-row">
+        <span class="label">Email</span>
+        <span class="value">{{ user.email }}</span>
+      </div>
+      <div class="info-row">
+        <span class="label">Member Since</span>
+        <span class="value">{{ user.created_at.strftime('%d %b %Y, %I:%M %p') }}</span>
+      </div>
+      <div class="info-row">
+        <span class="label">Account Status</span>
+        <span class="value">
+          {% if user.is_active %}
+            <span class="badge badge-active">● Active</span>
+          {% else %}
+            <span class="badge badge-revoked">● Disabled</span>
+          {% endif %}
+        </span>
+      </div>
+    </div>
+    <div class="actions-row">
+      <a href="/change-password" class="btn btn-sm btn-outline">🔑 Change Password</a>
+      <a href="/sessions" class="btn btn-sm btn-outline">📱 Manage Sessions</a>
+    </div>
+  </div>
+
+  <!-- Security Tips -->
+  <div class="info-card glass">
+    <h2>🛡️ Security Tips</h2>
+    <div class="info-grid">
+      <div class="info-row">
+        <span class="value">✓ Use a strong, unique password (8+ chars with upper, lower, digit, and special character)</span>
+      </div>
+      <div class="info-row">
+        <span class="value">✓ Regularly review your active sessions and revoke unknown ones</span>
+      </div>
+      <div class="info-row">
+        <span class="value">✓ Change your password periodically for maximum security</span>
+      </div>
+      <div class="info-row">
+        <span class="value">✓ Never share your credentials or JWT tokens with anyone</span>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

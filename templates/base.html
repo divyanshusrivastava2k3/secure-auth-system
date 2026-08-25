@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{% block title %}Secure Auth System{% endblock %}</title>
+  <meta name="description" content="Secure Authentication System with JWT, bcrypt, and session management." />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='24' fill='%237c3aed'/><text x='50' y='68' font-size='52' text-anchor='middle' fill='white'>🔐</text></svg>" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+</head>
+<body>
+  {% block navbar %}{% endblock %}
+  {% block content %}{% endblock %}
+  <footer class="footer">
+    <p>© 2026 Secure Auth System &middot; Flask &middot; PyJWT &middot; bcrypt &middot; SQLite</p>
+  </footer>
+  <script src="{{ url_for('static', filename='main.js') }}"></script>
+</body>
+</html>

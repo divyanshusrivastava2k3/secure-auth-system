@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block title %}Login — Secure Auth{% endblock %}
+
+{% block content %}
+<div class="auth-wrapper">
+  <div class="auth-card glass">
+    <div class="logo">🔐</div>
+    <h1>Welcome Back</h1>
+    <p class="subtitle">Sign in to your account</p>
+
+    <div id="login-alert" class="alert"></div>
+
+    <form id="login-form" autocomplete="off">
+      <div class="form-group">
+        <label for="login-username">Username</label>
+        <div class="input-wrap">
+          <span class="input-icon">@</span>
+          <input type="text" id="login-username" placeholder="johndoe" required />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="login-password">Password</label>
+        <div class="input-wrap">
+          <span class="input-icon">🔑</span>
+          <input type="password" id="login-password" placeholder="Enter your password" required />
+          <span id="toggle-login-pw" style="position:absolute;right:14px;top:50%;transform:translateY(-50%);cursor:pointer;font-size:16px;opacity:0.5;">👁️</span>
+        </div>
+      </div>
+
+      <button type="submit" class="btn btn-primary">
+        <span class="spinner"></span>
+        <span class="btn-text">Sign In</span>
+      </button>
+    </form>
+
+    <p style="margin-top:24px;font-size:0.9rem;color:var(--text-dim);">
+      Don't have an account? <a href="/register">Create one</a>
+    </p>
+  </div>
+</div>
+{% endblock %}

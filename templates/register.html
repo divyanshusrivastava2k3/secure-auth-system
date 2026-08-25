@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% block title %}Register — Secure Auth{% endblock %}
+
+{% block content %}
+<div class="auth-wrapper">
+  <div class="auth-card glass">
+    <div class="logo">🔐</div>
+    <h1>Create Account</h1>
+    <p class="subtitle">Join the secure platform</p>
+
+    <div id="reg-alert" class="alert"></div>
+
+    <form id="register-form" autocomplete="off">
+      <div class="form-group">
+        <label for="reg-fullname">Full Name</label>
+        <div class="input-wrap">
+          <span class="input-icon">👤</span>
+          <input type="text" id="reg-fullname" placeholder="John Doe" required />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="reg-username">Username</label>
+        <div class="input-wrap">
+          <span class="input-icon">@</span>
+          <input type="text" id="reg-username" placeholder="johndoe" minlength="3" maxlength="80" required />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="reg-email">Email</label>
+        <div class="input-wrap">
+          <span class="input-icon">✉️</span>
+          <input type="email" id="reg-email" placeholder="john@example.com" required />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="reg-password">Password</label>
+        <div class="input-wrap">
+          <span class="input-icon">🔑</span>
+          <input type="password" id="reg-password" placeholder="Min. 8 chars, upper, lower, digit, special" minlength="8" required />
+          <span id="toggle-reg-pw" style="position:absolute;right:14px;top:50%;transform:translateY(-50%);cursor:pointer;font-size:16px;opacity:0.5;">👁️</span>
+        </div>
+        <div class="pw-strength"><div class="bar" id="reg-pw-bar"></div></div>
+      </div>
+
+      <button type="submit" class="btn btn-primary">
+        <span class="spinner"></span>
+        <span class="btn-text">Create Account</span>
+      </button>
+    </form>
+
+    <p style="margin-top:24px;font-size:0.9rem;color:var(--text-dim);">
+      Already have an account? <a href="/login">Sign in</a>
+    </p>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+{% block title %}Sessions — Secure Auth{% endblock %}
+
+{% block navbar %}
+<nav class="navbar">
+  <div class="navbar-brand">
+    <div class="icon">🔐</div>
+    Secure Auth
+  </div>
+  <div class="navbar-links">
+    <a href="/dashboard">Dashboard</a>
+    <a href="/sessions" class="active">Sessions</a>
+    <a href="/change-password">Password</a>
+  </div>
+  <div class="navbar-user">
+    <span>{{ user.full_name }}</span>
+    <div class="avatar">{{ user.full_name[0] | upper }}</div>
+    <button id="btn-logout" class="btn btn-sm btn-outline">Logout</button>
+  </div>
+</nav>
+{% endblock %}
+
+{% block content %}
+<div class="page-wrapper">
+  <div class="page-header">
+    <h1>📱 Session Management</h1>
+    <p>View and control all your active login sessions</p>
+  </div>
+
+  <div class="table-card glass">
+    <h2>
+      <span>Active & Past Sessions</span>
+      <button id="btn-revoke-all" class="btn btn-sm btn-danger">Revoke All Others</button>
+    </h2>
+
+    <div style="overflow-x:auto;">
+      <table>
+        <thead>
+          <tr>
+            <th>Status</th>
+            <th>IP Address</th>
+            <th class="ua-cell">Device / Browser</th>
+            <th>Created</th>
+            <th>Last Active</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for s in sessions %}
+          <tr>
+            <td>
+              {% if s.token_jti == current_jti %}
+                <span class="badge badge-current">● This Device</span>
+              {% elif s.is_revoked %}
+                <span class="badge badge-revoked">● Revoked</span>
+              {% else %}
+                <span class="badge badge-active">● Active</span>
+              {% endif %}
+            </td>
+            <td>{{ s.ip_address or '—' }}</td>
+            <td class="ua-cell" title="{{ s.user_agent }}">{{ s.user_agent[:60] if s.user_agent else '—' }}{{ '…' if s.user_agent and s.user_agent|length > 60 else '' }}</td>
+            <td>{{ s.created_at.strftime('%d %b %Y, %H:%M') if s.created_at else '—' }}</td>
+            <td>{{ s.last_active.strftime('%d %b %Y, %H:%M') if s.last_active else '—' }}</td>
+            <td>
+              {% if s.token_jti == current_jti %}
+                <span style="color:var(--text-dim);font-size:0.82rem;">Current</span>
+              {% elif not s.is_revoked %}
+                <button class="btn btn-sm btn-danger btn-revoke" data-id="{{ s.id }}">Revoke</button>
+              {% else %}
+                <span style="color:var(--text-dim);font-size:0.82rem;">—</span>
+              {% endif %}
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+{% endblock %}
