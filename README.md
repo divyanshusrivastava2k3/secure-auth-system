@@ -5,9 +5,9 @@
 ![JWT](https://img.shields.io/badge/JWT-PyJWT-000000?style=for-the-badge&logo=jsonwebtokens&logoColor=white)
 ![Security](https://img.shields.io/badge/Security-bcrypt-10b981?style=for-the-badge)
 ![Database](https://img.shields.io/badge/SQLite%20%2f%20PostgreSQL-SQLAlchemy-4479A1?style=for-the-badge&logo=sqlite&logoColor=white)
-![UI](https://img.shields.io/badge/UI-Glassmorphism-7c3aed?style=for-the-badge)
+![UI](https://img.shields.io/badge/UI-Apple%20Minimalist-4f46e5?style=for-the-badge)
 
-> A production-grade **Secure Authentication & Session Management System** built with Python Flask, PyJWT, bcrypt password hashing, and an interactive **Glassmorphism web interface**. Built with enterprise security patterns including access/refresh tokens, brute-force rate limiting, device session tracking, and remote session revocation.
+> A production-grade **Secure Authentication & Session Management System** built with Python Flask, PyJWT, bcrypt password hashing, and an interactive **Apple & Stripe Minimalist web interface**. Built with enterprise security patterns including access/refresh tokens, brute-force rate limiting, device session tracking, and remote session revocation.
 
 ---
 
