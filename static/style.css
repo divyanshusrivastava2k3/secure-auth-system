@@ -336,15 +336,21 @@ a:hover { color: var(--accent-primary-hover); text-decoration: underline; }
   color: var(--text-main);
 }
 .info-grid {
-  display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 18px;
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 24px 32px;
 }
-.info-row { display: flex; flex-direction: column; gap: 4px; }
+.profile-grid {
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
+.info-row { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
 .info-row .label {
   font-size: 0.75rem; text-transform: uppercase;
   letter-spacing: 0.6px; color: var(--text-subtle); font-weight: 700;
 }
-.info-row .value { font-size: 1rem; font-weight: 600; color: var(--text-main); }
+.info-row .value {
+  font-size: 0.98rem; font-weight: 600; color: var(--text-main);
+  word-break: break-word; overflow-wrap: anywhere; line-height: 1.4;
+}
 
 .actions-row { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 24px; }
 
